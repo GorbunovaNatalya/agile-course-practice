@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':left_sided_heap-ViewModel')
+    testCompile project(':left_sided_heap-ViewModel').sourceSets.test.output
+}

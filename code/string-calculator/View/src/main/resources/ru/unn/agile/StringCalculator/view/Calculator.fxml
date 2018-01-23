@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import ru.unn.agile.StringCalculator.viewmodel.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.unn.agile.StringCalculator.view.Calculator">
+    <fx:define>
+        <ViewModel fx:id="viewModel" />
+    </fx:define>
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="305.0" prefWidth="396.0" spacing="10.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <HBox>
+                    <children>
+                        <Label minWidth="-Infinity" prefHeight="23.0" prefWidth="38.0" text="String  ">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                        <TextField fx:id="txtInputString" prefHeight="25.0" prefWidth="332.0" />
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Button fx:id="btnCalc" defaultButton="true" disable="${viewModel.calculationDisabled}" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Calculate" HBox.hgrow="ALWAYS" />
+                        <Separator prefWidth="200.0" visible="false" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="17.0" prefWidth="356.0">
+                    <children>
+                        <Label text="Result: " />
+                        <Label fx:id="lbResult" maxWidth="1.7976931348623157E308" text="${viewModel.result}" HBox.hgrow="ALWAYS" />
+                        <Separator prefWidth="150.0" visible="false" />
+                        <Label text="Status: " />
+                        <Label fx:id="lbStatus" maxWidth="1.7976931348623157E308" text="${viewModel.status}" HBox.hgrow="ALWAYS" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+      <TextArea fx:id="areaLog" editable="false" layoutX="9.0" layoutY="122.0" prefHeight="178.0" prefWidth="376.0" text="${viewModel.logs}" VBox.vgrow="ALWAYS" />
+    </children>
+</AnchorPane>

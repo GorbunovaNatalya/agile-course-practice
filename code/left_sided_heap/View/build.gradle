@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':left_sided_heap-ViewModel')
+    compile project(':left_sided_heap-Infrastructure')
+}

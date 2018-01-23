@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import ru.unn.agile.StatisticalValues.viewmodel.*?>
+<AnchorPane
+    xmlns="http://javafx.com/javafx/8"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="ru.unn.agile.StatisticalValues.view.StatisticalValues"
+>
+    <fx:define>
+        <ViewModel fx:id="viewModel"/>
+    </fx:define>
+        <Pane id="mainPane" layoutY="5.0" prefHeight="200.0" prefWidth="500.0">
+            <ComboBox
+                fx:id="cbStatistic"
+                prefWidth="150.0"
+                promptText="Statistic"
+                items="${viewModel.availableStatistics}"
+            />
+            <Label
+                fx:id="lbOrder"
+                layoutX="5.0"
+                layoutY="30.0"
+                text="Order"
+            />
+            <TextField
+                fx:id="tfOrder"
+                layoutX="5.0"
+                layoutY="50.0"
+                prefHeight="25.0"
+                prefWidth="27.0"
+                text="0"
+            />
+            <CheckBox
+                fx:id="cbIsBiased"
+                layoutX="41.0"
+                layoutY="53.0"
+                mnemonicParsing="false"
+                text="Biased"
+            />
+            <Label
+                fx:id="lbValues"
+                layoutX="5.0"
+                layoutY="80.0"
+                prefHeight="15.0"
+                prefWidth="44.0"
+                text="Values"
+            />
+            <TextField
+                fx:id="tfValues"
+                layoutY="100.0"
+                prefHeight="25.0"
+                prefWidth="500.0"
+                text="0.0, 0.0"
+            />
+            <Button
+                fx:id="btCalculate"
+                layoutX="5.0"
+                layoutY="140.0"
+                mnemonicParsing="false"
+                text="Calculate"
+            />
+            <Label
+                fx:id="lbResult"
+                layoutX="97.0"
+                layoutY="130.0"
+                text="Result"
+            />
+            <Label
+                fx:id="lbResultValue"
+                layoutX="102.0"
+                layoutY="147.0"
+            />
+            <Label
+                id="lbStatus"
+                layoutX="5.0"
+                layoutY="175.0"
+                text="Status"
+            />
+            <Label
+                fx:id="lbStatusValue"
+                layoutX="60.0"
+                layoutY="175.0"
+            />
+    </Pane>
+</AnchorPane>

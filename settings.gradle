@@ -140,6 +140,7 @@ project(":code/ratio-calculator").name = "ratio-calculator"
 include "code/convertnumeral"
 project(":code/convertnumeral").name = "convertnumeral-Model"
 
+
 // Uvarov Denis
 include "code/game-of-life"
 project(":code/game-of-life").name = "Game-of-life-Model"

@@ -1,0 +1,6 @@
+apply from: rootDir.getAbsolutePath() + '/config/scripts/javafx.plugin'
+
+dependencies {
+    compile project(':string-calculator-ViewModel')
+	compile project(':string-calculator-Infrastructure')
+}

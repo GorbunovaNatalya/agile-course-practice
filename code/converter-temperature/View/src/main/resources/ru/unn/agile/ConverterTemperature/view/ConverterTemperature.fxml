@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import ru.unn.agile.ConverterTemperature.viewmodel.*?>
+
+<AnchorPane fx:controller="ru.unn.agile.ConverterTemperature.view.ConverterTemperature" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:define>
+        <ViewModel fx:id="viewModel" />
+    </fx:define>
+   <children>
+      <VBox prefHeight="250.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label text="InputTemp:   " />
+                  <TextField fx:id="inputTemp"/>
+                  <Separator orientation="VERTICAL" prefHeight="80.0" visible="false" />
+               </children></HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <Separator prefWidth="30.0" />
+                  <ComboBox fx:id="cbOperation" items="${viewModel.inputTypes}" prefWidth="150.0" />
+                  <Separator prefWidth="150.0" />
+                  <ComboBox fx:id="cbOperation1" items="${viewModel.outputTypes}" prefWidth="150.0" />
+                  <Separator prefWidth="30.0" />
+               </children></HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <Button fx:id="btnCalc" defaultButton="true" disable="${viewModel.calculationDisabled}" mnemonicParsing="false" text="Button" />
+               </children></HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Separator prefWidth="10.0" visible="false" />
+                  <Label text="Result:  " />
+                  <Label fx:id="lbResult" text="${viewModel.result}" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                  <Label />
+                  <Separator prefWidth="100.0" visible="false" />
+                  <Label text="Status:  " />
+                  <Label fx:id="lbStatus" maxWidth="1.7976931348623157E308" text="${viewModel.status}" HBox.hgrow="ALWAYS" />
+                  <Label />
+               </children></HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

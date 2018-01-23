@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':numbers-in-words-ViewModel')
+    testCompile project(':numbers-in-words-ViewModel').sourceSets.test.output
+}
