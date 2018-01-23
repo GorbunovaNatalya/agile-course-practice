@@ -64,12 +64,15 @@ public class ViewModel {
     }
 
     public void calculate() {
+        int over = 0, admin = 0;
         if (calculationDisabled.get()) {
             return;
         }
 
+        over = overHours.get().isEmpty() ? 0 : Integer.parseInt(overHours.get());
+        admin = adminLeave.get().isEmpty() ? 0 : Integer.parseInt(adminLeave.get());
         Salary salary = new Salary(Integer.parseInt(pay.get()), Integer.parseInt(workedHours.get()),
-                Integer.parseInt(overHours.get()), Integer.parseInt(adminLeave.get()));
+                over, admin);
 
         result.set(Double.toString(salary.calculateSalary()));
         status.set(Status.SUCCESS.toString());
@@ -120,12 +123,14 @@ public class ViewModel {
         if (pay.get().isEmpty() || workedHours.get().isEmpty()) {
             inputStatus = Status.WAITING;
         }
-        if (overHours.get().isEmpty()) {
-            overHours.set("0");
+        try {
+            if (Double.parseDouble(pay.get()) < 0) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException iae) {
+            inputStatus = Status.BAD_FORMAT;
         }
-        if (adminLeave.get().isEmpty()) {
-            adminLeave.set("0");
-        }
+
         try {
             if (!pay.get().isEmpty()) {
                 Double.parseDouble(pay.get());

@@ -65,12 +65,12 @@ project(":code/polynomial-calculator/View").name = "polynomial-calculator-View"
 
 
 // Kuldaev Alexander
-include "code/polynomial-calculator/Model"
-project(":code/polynomial-calculator/Model").name = "polynomial-calculator-Model"
-include "code/polynomial-calculator/ViewModel"
-project(":code/polynomial-calculator/ViewModel").name = "polynomial-calculator-ViewModel"
-include "code/polynomial-calculator/View"
-project(":code/polynomial-calculator/View").name = "polynomial-calculator-View"
+include "code/salary/Model"
+project(":code/salary/Model").name = "salary-model"
+include "code/salary/ViewModel"
+project(":code/salary/ViewModel").name = "salary-ViewModel"
+include "code/salary/View"
+project(":code/salary/View").name = "salary-View"
 
 // Levin Vadim
 include "code/statistical-values/Model"
