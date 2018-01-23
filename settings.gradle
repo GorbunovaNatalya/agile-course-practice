@@ -171,7 +171,7 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-model"
 
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
-project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-model"
+project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
 
 
 
@@ -180,24 +180,24 @@ project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-model"
 
 
 // Korniakov Kirill, lab2-legacy
-include "code/korniakov-kirill-lab2-legacy/model"
-project(":code/korniakov-kirill-lab2-legacy/model").name = "korniakov-kirill-lab2-model-legacy"
+include "code/korniakov-kirill-lab2-legacy/Model"
+project(":code/korniakov-kirill-lab2-legacy/Model").name = "korniakov-kirill-lab2-Model-legacy"
 include "code/korniakov-kirill-lab2-legacy/ViewModel"
 project(":code/korniakov-kirill-lab2-legacy/ViewModel").name = "korniakov-kirill-lab2-ViewModel-legacy"
 include "code/korniakov-kirill-lab2-legacy/View"
 project(":code/korniakov-kirill-lab2-legacy/View").name = "korniakov-kirill-lab2-View-legacy"
 
 // Korniakov Kirill, lab2
-include "code/korniakov-kirill-lab2/model"
-project(":code/korniakov-kirill-lab2/model").name = "korniakov-kirill-lab2-model"
+include "code/korniakov-kirill-lab2/Model"
+project(":code/korniakov-kirill-lab2/Model").name = "korniakov-kirill-lab2-Model"
 include "code/korniakov-kirill-lab2/ViewModel"
 project(":code/korniakov-kirill-lab2/ViewModel").name = "korniakov-kirill-lab2-ViewModel"
 include "code/korniakov-kirill-lab2/View"
 project(":code/korniakov-kirill-lab2/View").name = "korniakov-kirill-lab2-View"
 
 // Korniakov Kirill, lab3-legacy
-include "code/korniakov-kirill-lab3-legacy/model"
-project(":code/korniakov-kirill-lab3-legacy/model").name = "korniakov-kirill-lab3-model-legacy"
+include "code/korniakov-kirill-lab3-legacy/Model"
+project(":code/korniakov-kirill-lab3-legacy/Model").name = "korniakov-kirill-lab3-Model-legacy"
 include "code/korniakov-kirill-lab3-legacy/ViewModel"
 project(":code/korniakov-kirill-lab3-legacy/ViewModel").name = "korniakov-kirill-lab3-ViewModel-legacy"
 include "code/korniakov-kirill-lab3-legacy/View"
@@ -206,8 +206,8 @@ include "code/korniakov-kirill-lab3-legacy/Infrastructure"
 project(":code/korniakov-kirill-lab3-legacy/Infrastructure").name = "korniakov-kirill-lab3-Infrastructure-legacy"
 
 // Korniakov Kirill, lab3
-include "code/korniakov-kirill-lab3/model"
-project(":code/korniakov-kirill-lab3/model").name = "korniakov-kirill-lab3-model"
+include "code/korniakov-kirill-lab3/Model"
+project(":code/korniakov-kirill-lab3/Model").name = "korniakov-kirill-lab3-Model"
 include "code/korniakov-kirill-lab3/ViewModel"
 project(":code/korniakov-kirill-lab3/ViewModel").name = "korniakov-kirill-lab3-ViewModel"
 include "code/korniakov-kirill-lab3/View"
