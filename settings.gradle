@@ -127,6 +127,7 @@ project(":code/numbers-in-words/Infrastructure").name = "numbers-in-words-Infras
 include "code/vectors3d"
 project(":code/vectors3d").name = "vectors3d-Model"
 
+
 // Semerenko Alexander
 include "code/Range"
 project(":code/Range").name = "Range-Model"
@@ -172,9 +173,6 @@ project(":code/bevzuk-anton").name = "bevzuk-anton-model"
 // Korniakov Kirill, lab1
 include "code/korniakov-kirill-lab1"
 project(":code/korniakov-kirill-lab1").name = "korniakov-kirill-lab1-Model"
-
-
-
 
 
 
