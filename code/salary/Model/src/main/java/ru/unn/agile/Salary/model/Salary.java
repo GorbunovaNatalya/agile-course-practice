@@ -3,7 +3,7 @@ package ru.unn.agile.Salary.model;
 public class Salary {
 
     public static final int MAX_HOUR_IN_MONTH = 160;
-    public static final int MAX_OVERTIME_IN_MONTH = 5048;
+    public static final int MAX_OVERTIME_IN_MONTH = 584;
     public static final double INCOME_TAX = 0.13;
     public static final double ONE_HUNDRED_PERCENT = 1;
     public static final double OVERTIME_RATE = 2;
@@ -17,8 +17,7 @@ public class Salary {
     }
 
     public double calculateSalary() {
-        return payInHour * (hoursWorked + overtimeHours * OVERTIME_RATE
-                - administrativeLeaveHours)
+        return payInHour * (hoursWorked + overtimeHours * OVERTIME_RATE - administrativeLeaveHours)
                 * (ONE_HUNDRED_PERCENT - INCOME_TAX);
     }
 
@@ -35,8 +34,7 @@ public class Salary {
             throw new IllegalArgumentException("Hour argument must be positive");
         }
         if (hour > MAX_HOUR_IN_MONTH) {
-            throw new IllegalArgumentException("Maximum value of working hours "
-                    + "a month 160");
+            throw new IllegalArgumentException("Maximum value of working hours a month 160");
         } else {
             hoursWorked = hour;
         }
@@ -44,16 +42,10 @@ public class Salary {
 
     public void addAdministrativeLeave(final int additionalAdministrativeLeaveHours) {
         if (additionalAdministrativeLeaveHours < 0) {
-            throw new IllegalArgumentException("Hour argument must be positive "
-                    + "or zero");
-        }
-        if (additionalAdministrativeLeaveHours > hoursWorked) {
-            throw new IllegalArgumentException("Parameter is greater "
-                    + "than the HourInMonth");
+            throw new IllegalArgumentException("Hour argument must be positive or zero");
         }
         if ((additionalAdministrativeLeaveHours + administrativeLeaveHours) > hoursWorked) {
-            throw new IllegalArgumentException("AdministrativeLeave is greater "
-                    + "than HourInMonth");
+            throw new IllegalArgumentException("AdministrativeLeave is greater than HourInMonth");
         } else {
             administrativeLeaveHours += additionalAdministrativeLeaveHours;
         }
@@ -63,13 +55,8 @@ public class Salary {
         if (overtimeHours + additionalOvertimeHours < 0) {
             throw new IllegalArgumentException("Hour argument must be positive");
         }
-        if (additionalOvertimeHours > MAX_OVERTIME_IN_MONTH) {
-            throw new IllegalArgumentException("Parameter is more than free hours "
-                    + "in month 5048");
-        }
         if ((additionalOvertimeHours + overtimeHours) > MAX_OVERTIME_IN_MONTH) {
-            throw new IllegalArgumentException("Overtimes is more than free hours "
-                    + "in month 5048");
+            throw new IllegalArgumentException("Overtimes is more than free hours in month 5048");
         } else {
             overtimeHours += additionalOvertimeHours;
         }
