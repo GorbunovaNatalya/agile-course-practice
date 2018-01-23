@@ -32,14 +32,8 @@ public class ViewModelTest {
     @Test
     public void statusIsWaitingWhenCalculateWithEmptyFields() {
         viewModel.calculate();
+
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
-    }
-
-    @Test
-    public void statusIsReadyWhenFieldsAreFill() {
-        setInputData();
-
-        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 
     @Test
@@ -51,7 +45,7 @@ public class ViewModelTest {
 
     @Test
     public void statusIsWaitingIfNotEnoughCorrectData() {
-        viewModel.payProperty().set("1");
+        viewModel.payProperty().set("1223");
 
         assertEquals(Status.WAITING.toString(), viewModel.statusProperty().get());
     }
@@ -67,6 +61,13 @@ public class ViewModelTest {
         viewModel.workProperty().set("abcd");
 
         assertTrue(viewModel.calculationDisabledProperty().get());
+    }
+
+    @Test
+    public void statusIsReadyWhenFieldsAreFill() {
+        setInputData();
+
+        assertEquals(Status.READY.toString(), viewModel.statusProperty().get());
     }
 
     @Test

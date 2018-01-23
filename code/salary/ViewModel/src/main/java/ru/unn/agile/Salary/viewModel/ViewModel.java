@@ -119,16 +119,16 @@ public class ViewModel {
     }
 
     private Status getInputStatus() {
-        Status inputStatus = Status.READY;
+        Status statusOfInput = Status.READY;
         if (pay.get().isEmpty() || workedHours.get().isEmpty()) {
-            inputStatus = Status.WAITING;
+            statusOfInput = Status.WAITING;
         }
         try {
             if (Double.parseDouble(pay.get()) < 0) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException iae) {
-            inputStatus = Status.BAD_FORMAT;
+            statusOfInput = Status.BAD_FORMAT;
         }
 
         try {
@@ -144,11 +144,12 @@ public class ViewModel {
             if (!adminLeave.get().isEmpty()) {
                 Double.parseDouble(adminLeave.get());
             }
-        } catch (NumberFormatException nfe) {
-            inputStatus = Status.BAD_FORMAT;
+
+        } catch (NumberFormatException numberException) {
+            statusOfInput = Status.BAD_FORMAT;
         }
 
-        return inputStatus;
+        return statusOfInput;
     }
 
     private class ValueChangeListener implements ChangeListener<String> {
