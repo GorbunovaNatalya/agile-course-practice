@@ -7,8 +7,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ViewModelTest {
-    private ViewModel viewModel;
-
     @Before
     public void setUp() {
         viewModel = new ViewModel();
@@ -142,4 +140,6 @@ public class ViewModelTest {
         viewModel.overProperty().set("2");
         viewModel.adminProperty().set("1");
     }
+
+    private ViewModel viewModel;
 }

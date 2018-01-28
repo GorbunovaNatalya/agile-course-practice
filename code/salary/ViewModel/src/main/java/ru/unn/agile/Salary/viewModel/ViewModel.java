@@ -13,15 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewModel {
-    private final StringProperty pay = new SimpleStringProperty();
-    private final StringProperty workedHours = new SimpleStringProperty();
-    private final StringProperty overHours = new SimpleStringProperty();
-    private final StringProperty adminLeave = new SimpleStringProperty();
-    private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
-    private final StringProperty result = new SimpleStringProperty();
-    private final StringProperty status = new SimpleStringProperty();
-    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
-
     // FXML needs default c-tor for binding
     public ViewModel() {
         pay.set("");
@@ -150,15 +141,22 @@ public class ViewModel {
             status.set(getInputStatus().toString());
         }
     }
+
+    private final StringProperty pay = new SimpleStringProperty();
+    private final StringProperty workedHours = new SimpleStringProperty();
+    private final StringProperty overHours = new SimpleStringProperty();
+    private final StringProperty adminLeave = new SimpleStringProperty();
+    private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
+    private final StringProperty result = new SimpleStringProperty();
+    private final StringProperty status = new SimpleStringProperty();
+    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 }
 
 enum Status {
-    WAITING("Please provide input data"),
-    READY("Press 'Calculate' or Enter"),
-    BAD_FORMAT("Bad format"),
-    SUCCESS("Success");
-
-    private final String name;
+    WAITING("Please provide input data!"),
+    READY("Press 'Calculate' or Enter!"),
+    BAD_FORMAT("Bad format!"),
+    SUCCESS("Success!");
 
     Status(final String name) {
         this.name = name;
@@ -167,4 +165,6 @@ enum Status {
     public String toString() {
         return name;
     }
+
+    private final String name;
 }

@@ -9,19 +9,6 @@ import ru.unn.agile.Salary.viewModel.ViewModel;
 
 public class Calculator {
     @FXML
-    private ViewModel viewModel;
-    @FXML
-    private TextField txtPay;
-    @FXML
-    private TextField txtWorked;
-    @FXML
-    private TextField txtOver;
-    @FXML
-    private TextField txtAdmin;
-    @FXML
-    private Button btnCalc;
-
-    @FXML
     void initialize() {
         // Two-way binding hasn't supported by FXML yet, so place it in code-behind
         txtPay.textProperty().bindBidirectional(viewModel.payProperty());
@@ -36,4 +23,17 @@ public class Calculator {
             }
         });
     }
+
+    @FXML
+    private ViewModel viewModel;
+    @FXML
+    private TextField txtPay;
+    @FXML
+    private TextField txtWorked;
+    @FXML
+    private TextField txtOver;
+    @FXML
+    private TextField txtAdmin;
+    @FXML
+    private Button btnCalc;
 }
