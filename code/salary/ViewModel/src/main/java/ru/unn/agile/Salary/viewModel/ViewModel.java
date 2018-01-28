@@ -17,12 +17,9 @@ public class ViewModel {
     private final StringProperty workedHours = new SimpleStringProperty();
     private final StringProperty overHours = new SimpleStringProperty();
     private final StringProperty adminLeave = new SimpleStringProperty();
-
     private final BooleanProperty calculationDisabled = new SimpleBooleanProperty();
-
     private final StringProperty result = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
-
     private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
 
     // FXML needs default c-tor for binding
@@ -55,7 +52,6 @@ public class ViewModel {
                 add(adminLeave);
             }
         };
-
         for (StringProperty field : fields) {
             final ValueChangeListener listener = new ValueChangeListener();
             field.addListener(listener);
@@ -68,12 +64,10 @@ public class ViewModel {
         if (calculationDisabled.get()) {
             return;
         }
-
         over = overHours.get().isEmpty() ? 0 : Integer.parseInt(overHours.get());
         admin = adminLeave.get().isEmpty() ? 0 : Integer.parseInt(adminLeave.get());
         Salary salary = new Salary(Integer.parseInt(pay.get()), Integer.parseInt(workedHours.get()),
                 over, admin);
-
         result.set(Double.toString(salary.calculateSalary()));
         status.set(Status.SUCCESS.toString());
     }
@@ -130,7 +124,6 @@ public class ViewModel {
         } catch (IllegalArgumentException iae) {
             statusOfInput = Status.BAD_FORMAT;
         }
-
         try {
             if (!pay.get().isEmpty()) {
                 Double.parseDouble(pay.get());
@@ -144,11 +137,9 @@ public class ViewModel {
             if (!adminLeave.get().isEmpty()) {
                 Double.parseDouble(adminLeave.get());
             }
-
         } catch (NumberFormatException numberException) {
             statusOfInput = Status.BAD_FORMAT;
         }
-
         return statusOfInput;
     }
 

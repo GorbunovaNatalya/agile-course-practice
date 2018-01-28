@@ -1,4 +1,4 @@
-package ru.unn.agile.Salary.View;
+package ru.unn.agile.Salary.view;
 
 import org.junit.Ignore;
 import org.junit.Test;
