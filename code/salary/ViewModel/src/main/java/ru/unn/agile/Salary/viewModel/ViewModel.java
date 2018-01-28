@@ -87,20 +87,20 @@ public class ViewModel {
         return calculationDisabled.get();
     }
 
-    public StringProperty resultProperty() {
-        return result;
-    }
-
-    public final String getResult() {
-        return result.get();
-    }
-
     public StringProperty statusProperty() {
         return status;
     }
 
     public final String getStatus() {
         return status.get();
+    }
+
+    public StringProperty resultProperty() {
+        return result;
+    }
+
+    public final String getResult() {
+        return result.get();
     }
 
     private Status getInputStatus() {
