@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':MatrixClass-ViewModel')
+    testCompile project('::MatrixClass-ViewModel').sourceSets.test.output
+}
