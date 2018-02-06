@@ -1,5 +1,6 @@
-apply from:   rootDir.getAbsolutePath() + '/config/scripts/javafx.plugin'
+apply from: rootDir.getAbsolutePath() + '/config/scripts/javafx.plugin'
 
-        dependencies {
-            compile project(':MatrixClass-ViewModel')
-        }
+dependencies {
+    compile project(':MatrixClass-ViewModel')
+    compile project(':MatrixClass-Infrastructure')
+}

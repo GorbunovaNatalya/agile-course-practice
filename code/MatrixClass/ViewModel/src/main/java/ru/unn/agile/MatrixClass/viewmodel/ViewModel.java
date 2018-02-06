@@ -1,20 +1,18 @@
 package ru.unn.agile.MatrixClass.viewmodel;
 
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import ru.unn.agile.ClassMatrix.Model.Matrix;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
-import ru.unn.agile.ClassMatrix.Model.Matrix;
-
 public class ViewModel {
-
     public ViewModel() {
         matrixSize.set("");
         determinant.set("");
@@ -39,9 +37,55 @@ public class ViewModel {
                 add(fieldForMatrix);
             }
         };
+
+        valueChangedListeners = new ArrayList<>();
         for (StringProperty field : fields) {
-            final ValueChangeListener listener = new ValueChangeListener();
+            final ValueCachingChangeListener listener = new ValueCachingChangeListener();
             field.addListener(listener);
+            valueChangedListeners.add(listener);
+        }
+    }
+
+    public final void setLogger(final ILogg logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException("Logger parameter can't be null");
+        }
+        this.logger = logger;
+    }
+
+    public ViewModel(final ILogg logger) {
+        setLogger(logger);
+        init();
+    }
+
+    private void init() {
+        matrixSize.set("");
+        fieldForMatrix.set("");
+        status.set(Status.WAITING.toString());
+        determinant.set("");
+
+        BooleanBinding couldCalculate = new BooleanBinding() {
+            {
+                super.bind(matrixSize, fieldForMatrix);
+            }
+            @Override
+            protected boolean computeValue() {
+                if (getInputStatus() == Status.READY) {
+                    return true;
+                }
+                return false;
+            }
+        };
+        calculateButtonDisabled.bind(couldCalculate.not());
+
+        final List<StringProperty> vals = new ArrayList<StringProperty>() { {
+            add(matrixSize);
+            add(fieldForMatrix);
+        } };
+        valueChangedListeners = new ArrayList<>();
+        for (StringProperty val : vals) {
+            final ValueCachingChangeListener listener = new ValueCachingChangeListener();
+            val.addListener(listener);
             valueChangedListeners.add(listener);
         }
     }
@@ -111,6 +155,12 @@ public class ViewModel {
         Matrix matrix = new Matrix(matrixA);
         determinant.set(Float.toString(matrix.calculateDeterminant()));
         status.set(Status.SUCCESS.toString());
+
+        StringBuilder message = new StringBuilder(LogMessages.CALCULATE_WAS_PRESSED);
+        message.append("Arguments: MatrixSize = ").append(matrixSize.get())
+                .append("; Matrix = ").append(fieldForMatrix.get());
+        logger.log(message.toString());
+        updateLogs();
     }
 
     private class ValueChangeListener implements ChangeListener<String> {
@@ -120,6 +170,27 @@ public class ViewModel {
             status.set(getInputStatus().toString());
             determinant.set("");
         }
+    }
+
+    public void onFocusChanged(final Boolean oldValue, final Boolean newValue) {
+        if (newValue && !oldValue) {
+            return;
+        }
+        for (ValueCachingChangeListener listener : valueChangedListeners) {
+            if (listener.isChanged()) {
+                StringBuilder message = new StringBuilder(LogMessages.EDITING_FINISHED);
+                message.append("Input args are: [")
+                        .append(fieldForMatrix.get()).append("; ");
+                logger.log(message.toString());
+                updateLogs();
+                listener.cache();
+                break;
+            }
+        }
+    }
+
+    public final List<String> getLog() {
+        return logger.getLog();
     }
 
     private Status getInputStatus() {
@@ -156,11 +227,55 @@ public class ViewModel {
         return Status.READY;
     }
 
+    private void updateLogs() {
+        List<String> fullLog = logger.getLog();
+        String record = new String("");
+        for (String log : fullLog) {
+            record += log + "\n";
+        }
+        logs.set(record);
+    }
+
+    private class ValueCachingChangeListener implements ChangeListener<String> {
+        private String prevValue = new String("");
+        private String curValue = new String("");
+
+        @Override
+        public void changed(final ObservableValue<? extends String> observable,
+                            final String oldValue, final String newValue) {
+            if (oldValue.equals(newValue)) {
+                return;
+            }
+            status.set(getInputStatus().toString());
+            curValue = newValue;
+        }
+
+        public boolean isChanged() {
+            return !prevValue.equals(curValue);
+        }
+
+        public void cache() {
+            prevValue = curValue;
+        }
+    }
+
     private final StringProperty matrixSize = new SimpleStringProperty();
     private final StringProperty determinant = new SimpleStringProperty();
     private final StringProperty fieldForMatrix = new SimpleStringProperty();
+    private final StringProperty logs = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
     private final BooleanProperty calculateButtonDisabled = new SimpleBooleanProperty();
-    private final List<ValueChangeListener> valueChangedListeners = new ArrayList<>();
+    private List<ValueCachingChangeListener> valueChangedListeners = new ArrayList<>();
     private static final String FLOAT_NUMBER_REGEX = "(^[-]?\\d+[.]\\d+$)|(^[-]?\\d+$)";
+
+    private ILogg logger;
+
+    final class LogMessages {
+        public static final String CALCULATE_WAS_PRESSED = "Calculate. ";
+        public static final String EDITING_FINISHED = "Updated input. ";
+
+        private LogMessages() {
+        }
+    }
+
 }
