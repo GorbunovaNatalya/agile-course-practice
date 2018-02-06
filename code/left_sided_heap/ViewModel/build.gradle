@@ -1,0 +1,3 @@
+dependencies {
+    compile project(':left_sided_heap-Model')
+}

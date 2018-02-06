@@ -1,0 +1,1 @@
+dependencies { compile project(':statistical-values-Model') }

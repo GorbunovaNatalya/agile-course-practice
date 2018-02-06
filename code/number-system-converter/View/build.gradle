@@ -1,0 +1,6 @@
+apply from: rootDir.getAbsolutePath() + '/config/scripts/javafx.plugin'
+
+dependencies {
+    compile project(':number-system-converter-ViewModel')
+    compile project(':number-system-converter-Infrastructure')
+}

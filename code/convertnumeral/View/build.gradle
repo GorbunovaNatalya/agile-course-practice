@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':convertnumeral-ViewModel')
+    compile project(':convertnumeral-Infrastructure')
+}

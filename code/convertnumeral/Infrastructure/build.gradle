@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':convertnumeral-ViewModel')
+    testCompile project(':convertnumeral-ViewModel').sourceSets.test.output
+}

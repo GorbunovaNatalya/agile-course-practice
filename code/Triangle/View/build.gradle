@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':Triangle-ViewModel')
+    compile project(':Triangle-Insfrastructure')
+}
